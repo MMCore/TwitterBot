@@ -5,6 +5,12 @@
 
 -Twit (npm install twit)
 
+-Twitter API access through your twitter account (Visit: https://dev.twitter.com/ to set up consumer and access keys/tokens) 
+
+-Update the config.js file with the keys/tokens you set up for your app.
+
+-Update the 'MYID' field in the bot.js file.  (You can find your ID here: http://gettwitterid.com/)
+
 
 #Features (While Bot is Running):
 -Anytime someone follows your account, the bot will automatically follow them. 
