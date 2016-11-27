@@ -19,7 +19,7 @@ setInterval(function removeUnfollower(){
     console.log(followArray)
     for(var key in followArray) {
       //Testing Friendship After Specified Time
-      if(Date.now() - followArray[key] > 86400000){
+      if(Date.now() - followArray[key] > 604800000){
           console.log('Attempting Unfollow')
           unfollowPerson(key,followArray)
         }
