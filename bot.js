@@ -1,11 +1,12 @@
 var Twit = require('twit')
+var fs = require('fs')
 var config = require('./config.js')
 var T = new Twit(config)
 var stream = T.stream('user')
 var MYID = '' //Enter Your ID Here e.g: '5425246167376373'
 
 //Dictionary Storing Id's(Keys) and Times(Values) When They Followed You
-var followArray = {}
+var followArray = JSON.parse(fs.readFileSync("dict.txt").toString())
 
 //Listening For Follow Events
 stream.on('follow', followPerson)
@@ -17,15 +18,14 @@ setInterval(function removeUnfollower(){
   }else{
     console.log(followArray)
     for(var key in followArray) {
-      //Testing Friendship After 15 sec
+      //Testing Friendship After Specified Time
       if(Date.now() - followArray[key] > 86400000){
           console.log('Attempting Unfollow')
           unfollowPerson(key,followArray)
-
         }
       }
     }
-}, 3600000)
+}, 10000)
 
 //Follows Anyone Who Follows You And Stores Them In the followDict
 function followPerson(event){
@@ -34,7 +34,7 @@ function followPerson(event){
       if(err){
         console.log(err)
       }else{
-        console.log('followed ' + event.source.id_str )
+        console.log('Followed ' + event.source.id_str )
         followArray[event.source.id_str] = Date.now()
       }
     })
@@ -42,14 +42,22 @@ function followPerson(event){
     console.log('I followed!')
     followArray[event.target.id_str] = Date.now()
   }
+  fs.writeFile('dict.txt',JSON.stringify(followArray), function (err) {
+    if (err) throw err;
+    console.log('Dictionary Updated!');
+  })
 }
 
-function unfollowPerson(id_str,followArray){
+function unfollowPerson(id_str){
   T.post('friendships/destroy', { id: id_str }, function(err, data, response) {
     if(err){
       console.log(err)
     }else{
-      delete followArray[key]
+      delete followArray[id_str]
     }
+    fs.writeFile('dict.txt',JSON.stringify(followArray), function (err) {
+      if (err) throw err;
+      console.log('Dictionary Updated!');
+    })
   })
 }
