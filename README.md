@@ -1,7 +1,7 @@
 # TwitterBot
 
 #Requirements
--Node
+-Node (https://nodejs.org/en/)
 
 -Twit (npm install twit)
 
@@ -15,8 +15,9 @@
 #Features (While Bot is Running):
 -Anytime someone follows your account, the bot will automatically follow them. 
 
--Anyone you follow manually or using the bot will be added to an array containing recent followings. Anyone that you have   followed for over a week will be automatically unfollowed. 
+-Anyone you follow manually or using the bot will be tracked using a dictionary, containing recent followings. Anyone that you have followed for over a week will be automatically unfollowed.
 
+-The Dictionary is stored in a text file - this means that the bot can be restarted/paused without losing data.  
 
 
 #Suggestions:
