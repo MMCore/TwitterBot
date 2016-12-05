@@ -42,7 +42,7 @@ function followPerson(event){
     followArray[event.target.id_str] = Date.now()
   }
   fs.writeFile('dict.txt',JSON.stringify(followArray), function (err) {
-    if (err) throw err;
+    if (err) throw err
     console.log('Dictionary Updated')
   })
 }
