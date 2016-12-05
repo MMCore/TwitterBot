@@ -9,7 +9,7 @@
 
 -Update the config.js file with the keys/tokens you set up for your app.
 
--Update the 'MYID' field in the bot.js file.  (You can find your ID here: http://gettwitterid.com/)
+-Update the ID field in the config.js file. (You can find your ID here: http://gettwitterid.com/)
 
 
 #Features (While Bot is Running):
